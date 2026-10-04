@@ -3,6 +3,14 @@ package recordemo;
 public record Circle(double radius) {
 
 
+    @Override
+    public double radius() {
+        if (radius < 0) {
+            return -radius;
+        }
+        return radius;
+    }
+
     // Instance method to calculate area
     public double area() {
         return Math.PI * radius * radius;
@@ -22,6 +30,9 @@ public record Circle(double radius) {
 
             // Test case for invalid radius
             Circle invalidCircle = new Circle(-5.0);
+        System.out.println("Circle with radius " + invalidCircle.radius() +
+                " has area: " + invalidCircle.area() +
+                " and circumference: " + invalidCircle.circumference());
 
     }
 }
