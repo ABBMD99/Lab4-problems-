@@ -8,6 +8,6 @@ public class Plumber extends Person{
     @Override
     public void display(){
         super.display();
-        System.out.println(" the Plumber");
+        System.out.println(" the Plumber.");
     }
 }

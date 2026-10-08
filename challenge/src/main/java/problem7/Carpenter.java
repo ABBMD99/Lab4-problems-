@@ -9,7 +9,7 @@ public class Carpenter extends Person{
     @Override
     public void display(){
         super.display();
-        System.out.println(" the Carpenter");
+        System.out.println(" the Carpenter.");
     }
 
 }
