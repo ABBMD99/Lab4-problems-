@@ -39,14 +39,32 @@ public class Instructor extends Person {
 
     public String toCard(){
         StringBuilder sb=new StringBuilder();
-        sb.append("Instructor\n").append("---------\n")
+        sb.append("Instructor\n").append("----------\n")
                 .append("Employee #: ").append(this.employeeNumber).append("\n")
-                .append("Name :").append(this.getSecondName()).append(",").append(this.getFirstName()).append("\n")
-                .append("Email :").append(this.getEmail()).append("\n")
-                .append("phone :").append(this.getPhone()).append("\n");
+                .append("Name : ").append(this.getSecondName()).append(", ").append(this.getFirstName()).append("\n")
+                .append("Email : ").append(this.getEmail()).append("\n")
+                .append("Phone : ").append(this.getPhone()).append("\n");
 
         return sb.toString();
 
+    }
+
+    public String displayName(){
+        StringBuilder sb=new StringBuilder();
+        if(this.getSecondName()!=null && !this.getSecondName().isBlank()){
+            sb.append(this.getSecondName().trim());
+        }
+        if(this.getFirstName()!=null && !this.getFirstName().isBlank()){
+            if(sb.length()>0){
+                sb.append(" ");
+            }
+            sb.append(this.getFirstName().trim());
+        }
+
+        if (sb.length() == 0) {
+            sb.append("Unknown");
+        }
+        return sb.toString();
     }
 
 

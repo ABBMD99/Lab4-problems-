@@ -42,11 +42,13 @@ public class Subject {
         return titleMatch || codeMatch;
 
     }
-    public  String syllabusLine(){
+    public  String syllabusLine(Instructor instructor){
         StringBuilder sb=new StringBuilder();
-        sb.append(this.code).append(" - ").append(this.title).append(" (Instructor: ").append(this.instructor.getSecondName()).append(" ")
-                .append(this.instructor.getFirstName()).append(" )");
-        return sb.toString();
+        sb.append(this.code).append(" - ").append(this.title).append(" (Instructor: ");
+        if(instructor!=null)
+                sb.append(instructor.getSecondName()).append(" ").append(instructor.getFirstName());
+        else sb.append("N/A");
+        return sb.append(")").toString();
     }
 
     //Getters

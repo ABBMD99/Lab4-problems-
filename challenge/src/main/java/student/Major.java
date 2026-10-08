@@ -10,9 +10,9 @@ public class Major {
     public static final Major COMPUTER_SCIENCE = new Major("23", "computer science");
     //default constructor
 
-    public Major(){
+    //public Major(){
         //this("23","computer science");
-    }
+    //}
 
     public Major(String code, String name) {
         this.id=nextId++;
@@ -23,13 +23,14 @@ public class Major {
     }
 
     // Method to add a student
-    public void addStudent(Student s) {
-        if(studentCount==50){
+    public boolean addStudent(Student s) {
+        if(studentCount>=50){
             System.out.println("This major is full!");
-            return;
+            return false;
         }
         students[studentCount]=s;
         studentCount++;
+        return true;
 
     }
 
@@ -56,23 +57,26 @@ public class Major {
                 }
                 students[studentCount -1]=null;
                 studentCount--;
-                s.setMajor(null);
+                if (s.getMajor() == this) s.setMajor(null);
                 return true;
             }
         }
         return false;
 
     }
-    public void getOccupancyRate(){
-        double rate=(double)studentCount/50 *100;
-        System.out.println(String.format("Occupancy rate =%.1f%%",rate));
+
+    public void getOccupancyRate() {
+        double rate = (double) studentCount / 50 * 100;
+        System.out.println(name + " capacity: 50 students");
+        System.out.println("Current enrollment: " + studentCount + " students");
+        System.out.println(String.format("Occupancy rate = %.1f%%", rate));
     }
 
     public String getStudentListAsString(){
         StringBuilder sb = new StringBuilder();
         for(int i=0;i<studentCount;i++){
             Student s=students[i];
-            sb.append(i+1).append(". ").append(s.getCne()).append(s.getFullNameFormatted());
+            sb.append(i+1).append(". ").append(s.getCne()).append(" ").append(s.getFullNameFormatted());
             if(i<studentCount-1) sb.append("\n");
         }
 
@@ -98,6 +102,11 @@ public class Major {
     public int getStudentCount() {
         return studentCount;
     }
+
+    //Setters
+
+    public void setCode(String code) { this.code = code; }
+    public void setName(String name) { this.name = name; }
 
     // Display all students in the major
     public void displayStudents() {
